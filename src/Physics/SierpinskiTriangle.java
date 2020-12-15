@@ -68,4 +68,9 @@ public class SierpinskiTriangle implements DrawableSim{
     public void ToggleFunkyMode() {
         funkyMode = !funkyMode;
     }
+
+    @Override
+    public String toString() {
+        return "Sierpinski Triangle";
+    }
 }

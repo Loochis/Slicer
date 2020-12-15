@@ -298,4 +298,10 @@ public class PathfindingSim implements DrawableSim{
         // I mean, it's a staple at this point
         funkyMode = !funkyMode;
     }
+
+    @Override
+    public String toString() {
+        return "Pathfinder";
+    }
+
 }

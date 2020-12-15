@@ -2,9 +2,9 @@ package Standard;
 
 import Graphical.DrawablePanel;
 import Graphical.MainFrame;
-import Physics.KochCurve;
-import Physics.PathfindingSim;
-import Physics.SierpinskiTriangle;
+import Physics.*;
+
+import java.nio.file.Path;
 
 public class Main{
 
@@ -28,8 +28,7 @@ public class Main{
     private long prevFrameTime = System.nanoTime();
 
     private DrawablePanel drawablePanel;
-    private KochCurve kochCurve;
-    private PathfindingSim pathfinder;
+    private DrawableSim sim;
 
     private double mouseX = 0, mouseY = 0;
     private double deltaX = 0, deltaY = 0;
@@ -41,18 +40,9 @@ public class Main{
 
     // Start here, create a window
     public static void main(String[] args) {
-        System.out.println(bud(1));
         MainFrame frame = new MainFrame();
     }
 
-
-    public static int bud(int n)
-    {
-        if (n>5)
-            return n - 2;
-        else
-            return n + bud(n +1);
-    }
 
     // On creation of main object, start thread to run engine in
     public Main() {
@@ -62,16 +52,17 @@ public class Main{
     // Dispatch physics update and frame update on their own timers
     public void Run() {
         // Create a new board, set the drawablePanels board
-        kochCurve = new KochCurve(this);
-        pathfinder = new PathfindingSim(100, 70, this);
-        drawablePanel.setBoard(pathfinder);
+        sim = new PathfindingSim(100, 70, this);
+        drawablePanel.setBoard(sim);
 
         // Main sim loop
         while (true) {
-            if (clicking && mouseButton == 1)
-                pathfinder.PlaceCell();
-            if (clicking && mouseButton == 3)
-                pathfinder.PlaceGoal();
+            if (sim != null && sim instanceof PathfindingSim) {
+                if (clicking && mouseButton == 1)
+                    ((PathfindingSim)sim).PlaceCell();
+                if (clicking && mouseButton == 3)
+                    ((PathfindingSim)sim).PlaceGoal();
+            }
 
             // Keep track of delta frame time and delta physics time
             double deltaFrameTime = System.nanoTime() - prevFrameTime;
@@ -83,6 +74,11 @@ public class Main{
             }
 
         }
+    }
+
+    public void ChangeSim(DrawableSim newSim) {
+        sim = newSim;
+        drawablePanel.setBoard(sim);
     }
 
     /**
@@ -101,7 +97,7 @@ public class Main{
      * Toggles F U N K Y mode
      */
     public void ToggleFunkyMode() {
-        pathfinder.ToggleFunkyMode();
+        sim.ToggleFunkyMode();
         //pathfinder.StepSim(g);
     }
 
@@ -124,8 +120,8 @@ public class Main{
         this.mouseX = mouseX;
         this.mouseY = mouseY;
 
-        pathfinder.ScreenToBoardCoords(mouseX, mouseY);
-        SetOffset();
+        if (sim != null && sim instanceof PathfindingSim)
+            ((PathfindingSim)sim).ScreenToBoardCoords(mouseX, mouseY);
     }
 
     /**

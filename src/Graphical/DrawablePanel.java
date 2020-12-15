@@ -47,9 +47,8 @@ public class DrawablePanel extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(new Color(44, 44, 44));
-        g.fillRect(0,0,getWidth(),getHeight());
         g.setColor(new Color(29, 29, 29));
+        g.fillRect(0,0,getWidth(),getHeight());
         drawableSimulator.DrawSim(g, this);
     }
 }

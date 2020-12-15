@@ -89,4 +89,9 @@ public class KochCurve implements DrawableSim{
     public void ToggleFunkyMode() {
         funkyMode = !funkyMode;
     }
+
+    @Override
+    public String toString() {
+        return "Koch Curve";
+    }
 }

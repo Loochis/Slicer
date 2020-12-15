@@ -1,6 +1,7 @@
 package Physics;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Pathfinder {
@@ -66,6 +67,7 @@ public abstract class Pathfinder {
                 return TraceRecursive(initialNodes, ii, board, visitedCells, cellWidth, cellHeight);
             }
         }
+        initialNodes.clear();
         return null;
     }
 

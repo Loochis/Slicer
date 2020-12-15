@@ -3,6 +3,10 @@ package Graphical;
 import Listeners.MouseListener;
 import Listeners.MouseMoveListener;
 import Listeners.MouseScrollListener;
+import Physics.DrawableSim;
+import Physics.KochCurve;
+import Physics.PathfindingSim;
+import Physics.SierpinskiTriangle;
 import Standard.Main;
 
 import javax.swing.*;
@@ -23,12 +27,13 @@ public class MainFrame extends JFrame {
     private JButton FFFFWDButton;
     private JButton FFFFFWDButton;
     private JButton funkyModeButton;
-    private JSlider angleSlider;
     private JSlider trunkSlider;
-    private JSlider coSlider;
     private JSlider numSlider;
     private JButton pausePlayButton;
     private JButton recursiveModeButton;
+    private JComboBox comboBox1;
+    private JPanel FractalControls;
+    private JPanel PathfinderControls;
     private JButton clearBoardButton;
 
     private DrawablePanel drawablePanel;
@@ -50,6 +55,10 @@ public class MainFrame extends JFrame {
         // Gives main and drawablePanel reference to each other
         main.setDrawablePanel(drawablePanel);
 
+        comboBox1.addItem(new PathfindingSim(100, 70, main));
+        comboBox1.addItem(new KochCurve(main));
+        comboBox1.addItem(new SierpinskiTriangle(main));
+
         // Adds listeners to the drawable panel
         drawablePanel.addMouseListener(new MouseListener(main));
         drawablePanel.addMouseMotionListener(new MouseMoveListener(main));
@@ -58,12 +67,11 @@ public class MainFrame extends JFrame {
         // Sets up all buttons and their actions
         drawablePanel.repaint();
         funkyModeButton.addActionListener(e -> main.ToggleFunkyMode());
-        angleSlider.addChangeListener(e -> main.angle = Math.toRadians(angleSlider.getValue()));
         trunkSlider.addChangeListener(e -> main.trunk = trunkSlider.getValue());
         numSlider.addChangeListener(e -> main.maxBranches = numSlider.getValue());
-        coSlider.addChangeListener(e -> main.coeff = (float)coSlider.getValue() / 100.0);
         pausePlayButton.addActionListener(e -> main.paused = !main.paused);
         recursiveModeButton.addActionListener(e -> main.recursiveMode = !main.recursiveMode);
+        comboBox1.addActionListener(e -> main.ChangeSim((DrawableSim) comboBox1.getSelectedItem()));
     }
 
     // Turns the drawPanel into a DrawablePanel type which contains all the custom behaviours required, gets reference to new DrawablePanel
