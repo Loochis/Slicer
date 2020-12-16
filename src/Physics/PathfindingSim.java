@@ -60,7 +60,7 @@ public class PathfindingSim implements DrawableSim{
         visitedCells = new ArrayList<>();
         blockedCells = new ArrayList<>();
         nodes = new ArrayList<>();
-        nodes.add(new Position(0, 0));
+        nodes.add(new Position(0.5, 0.5));
         tempNode = nodes.get(0);
 
         // Initialize cells and references
@@ -123,7 +123,7 @@ public class PathfindingSim implements DrawableSim{
             visitedCells = new ArrayList<>();
             blockedCells = new ArrayList<>();
             nodes = new ArrayList<>();
-            nodes.add(new Position(0, 0));
+            nodes.add(new Position(0.5, 0.5));
             lastNodeIndex = 0;
             tracingIndex = 0;
             currentX = 0;
@@ -146,7 +146,7 @@ public class PathfindingSim implements DrawableSim{
             visitedCells = new ArrayList<>();
             blockedCells = new ArrayList<>();
             nodes = new ArrayList<>();
-            nodes.add(new Position(0, 0));
+            nodes.add(new Position(0.5, 0.5));
 
             pathfinder.SearchRecursive(0, cells, 0, 0, goalX, goalY, visitedCells, blockedCells);
             if (visitedCells == null)
@@ -158,6 +158,8 @@ public class PathfindingSim implements DrawableSim{
         cellWidth = drawPanel.getWidth() / GetBoardWidth();
         cellHeight = drawPanel.getHeight() / GetBoardHeight();
 
+        g.setColor(new Color(40, 40, 40));
+        g.fillRect(0,0, drawPanel.getWidth(), drawPanel.getHeight());
         // Cycle through every cell on the x, get the working value (modulated to create infinite board)
         for (int x = 0; x < GetBoardWidth(); x++) { // x is length of array of arrays
 

@@ -58,6 +58,7 @@ public class Main{
         // Main sim loop
         while (true) {
             if (sim != null && sim instanceof PathfindingSim) {
+                // Left mouse places block, right click moves goal
                 if (clicking && mouseButton == 1)
                     ((PathfindingSim)sim).PlaceCell();
                 if (clicking && mouseButton == 3)

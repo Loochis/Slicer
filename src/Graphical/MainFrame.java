@@ -55,6 +55,7 @@ public class MainFrame extends JFrame {
         // Gives main and drawablePanel reference to each other
         main.setDrawablePanel(drawablePanel);
 
+        // Set up the combobox
         comboBox1.addItem(new PathfindingSim(100, 70, main));
         comboBox1.addItem(new KochCurve(main));
         comboBox1.addItem(new SierpinskiTriangle(main));

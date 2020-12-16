@@ -34,10 +34,14 @@ public class SierpinskiTriangle implements DrawableSim{
         DrawTri(g, 0, drawPanel.getWidth() / 2, 20);
     }
 
+    // recurse for drawing triangles
     private void DrawTri(Graphics g, int iter, int xPos, int yPos) {
+        // If the current iteration is out of set bounds, end recursion
         if (iter > main.maxBranches)
             return;
 
+        // 2 points must be calculated to draw the triangle, the tip is passed from previous recurse
+        // Use trig to determine the positions of the points
         int x1 = (int) (Math.sin(Math.PI / 6) * main.trunk * Math.pow(0.5, iter));
         x1 += xPos;
         int x2 = (int) (Math.sin(-Math.PI / 6) * main.trunk * Math.pow(0.5, iter));
@@ -48,14 +52,18 @@ public class SierpinskiTriangle implements DrawableSim{
         int y2 = (int) (Math.cos(-Math.PI / 6) * main.trunk * Math.pow(0.5, iter));
         y2 += yPos;
 
+        // Gotta have funkymode, it's necessary
         if (funkyMode) {
             float iterDiv = (float) Math.pow((float)iter / (float)main.maxBranches, 3);
             g.setColor(new Color(iterDiv, 1.0f, 1.0f - iterDiv));
         }
+        // Draw the lines
         g.drawLine(xPos, yPos, x1, y1);
         g.drawLine(xPos, yPos, x2, y2);
         g.drawLine(x1, y1, x2, y2);
 
+        // Calculate the new tip point for the side triangles and recurse 3 times (once per additional triangle)
+        // I've severely limited the number of recurses available to the user, (3^10 = 59049 triangles being drawn at maximum iterations)
         int baseXoffset = (int) (Math.pow(1.0/2.0, iter) * main.trunk) / 2;
         DrawTri(g, iter + 1, xPos + baseXoffset, yPos);
         DrawTri(g, iter + 1, xPos - baseXoffset, yPos);
