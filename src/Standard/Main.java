@@ -1,19 +1,25 @@
 package Standard;
 
+import Files.ModelParser;
 import Graphical.DrawablePanel;
 import Graphical.MainFrame;
-import Physics.*;
+import Standard.Shapes.Shape3;
+import Standard.Math3.TransformMatrix3;
+import Standard.Math3.Tri3;
+import Standard.Math3.Vector3;
 
-import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main{
 
-    public double angle = Math.PI / 4;
-    public double trunk = 100;
-    public double coeff = 0.8;
-    public int maxBranches = 1;
+    public static final String DIR = System.getProperty("user.dir") + "\\Read\\"; // Get working directory, add files to it
 
-    public double cutoff = 2;
+    public boolean wire = true;
+    public boolean verts = false;
+    public boolean intersections = true;
+
+    public double depth;
 
     // Target FPS and PhysicsUpdates per second
     public static final int TARGET_FPS = 120;
@@ -28,7 +34,10 @@ public class Main{
     private long prevFrameTime = System.nanoTime();
 
     private DrawablePanel drawablePanel;
-    private DrawableSim sim;
+
+    public List<Shape3> shapes3 = new ArrayList<>();
+    public TransformMatrix3 matrix3 = new TransformMatrix3(new Vector3(500, 350, 0), new Vector3(0, 0, 0), new Vector3(300, 300, 300));
+
 
     private double mouseX = 0, mouseY = 0;
     private double deltaX = 0, deltaY = 0;
@@ -46,24 +55,17 @@ public class Main{
 
     // On creation of main object, start thread to run engine in
     public Main() {
+        // CHANGE THIS TO CHANGE WHICH FILE IS LOADED
+        shapes3.add(ModelParser.ModelFromFile(this, "Bob.obj"));
+
         (new Thread(this::Run)).start();
     }
 
     // Dispatch physics update and frame update on their own timers
     public void Run() {
-        // Create a new board, set the drawablePanels board
-        sim = new PathfindingSim(100, 70, this);
-        drawablePanel.setBoard(sim);
 
         // Main sim loop
         while (true) {
-            if (sim != null && sim instanceof PathfindingSim) {
-                // Left mouse places block, right click moves goal
-                if (clicking && mouseButton == 1)
-                    ((PathfindingSim)sim).PlaceCell();
-                if (clicking && mouseButton == 3)
-                    ((PathfindingSim)sim).PlaceGoal();
-            }
 
             // Keep track of delta frame time and delta physics time
             double deltaFrameTime = System.nanoTime() - prevFrameTime;
@@ -75,11 +77,6 @@ public class Main{
             }
 
         }
-    }
-
-    public void ChangeSim(DrawableSim newSim) {
-        sim = newSim;
-        drawablePanel.setBoard(sim);
     }
 
     /**
@@ -95,19 +92,17 @@ public class Main{
     }
 
     /**
-     * Toggles F U N K Y mode
-     */
-    public void ToggleFunkyMode() {
-        sim.ToggleFunkyMode();
-        //pathfinder.StepSim(g);
-    }
-
-    /**
      * Sets the offset of the display (used for panning the board)
      */
     private void SetOffset() {
         if (clicking && mouseButton == 1)
             drawablePanel.setOffset(drawablePanel.getOffsetX() + (int)Math.ceil(deltaX), drawablePanel.getOffsetY() + (int)Math.ceil(deltaY));
+    }
+
+    public void UpdateMatrix() {
+        for (Shape3 shape : shapes3) {
+            shape.setMatrix(matrix3);
+        }
     }
 
     /**
@@ -120,9 +115,6 @@ public class Main{
         deltaY = mouseY - this.mouseY;
         this.mouseX = mouseX;
         this.mouseY = mouseY;
-
-        if (sim != null && sim instanceof PathfindingSim)
-            ((PathfindingSim)sim).ScreenToBoardCoords(mouseX, mouseY);
     }
 
     /**

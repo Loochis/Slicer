@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Graphical.MainFrame">
-  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="14" column-count="14" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="14" column-count="34" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1064" height="1092"/>
+      <xy x="20" y="20" width="1245" height="1106"/>
     </constraints>
     <properties>
       <background color="-13882324"/>
@@ -13,7 +13,7 @@
       <grid id="187f1" binding="drawPanel" custom-create="true" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="12" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
+          <grid row="1" column="1" row-span="1" col-span="32" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="1000" height="700"/>
           </grid>
         </constraints>
@@ -25,21 +25,21 @@
       </grid>
       <vspacer id="ff343">
         <constraints>
-          <grid row="13" column="1" row-span="1" col-span="12" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="13" column="1" row-span="1" col-span="32" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="30"/>
           </grid>
         </constraints>
       </vspacer>
       <vspacer id="31914">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="12" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="0" column="1" row-span="1" col-span="32" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="30"/>
           </grid>
         </constraints>
       </vspacer>
       <hspacer id="70bd">
         <constraints>
-          <grid row="0" column="13" row-span="14" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="0" column="33" row-span="14" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="30" height="-1"/>
           </grid>
         </constraints>
@@ -53,12 +53,12 @@
       </hspacer>
       <vspacer id="c1b26">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="12" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+          <grid row="2" column="1" row-span="1" col-span="32" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
             <preferred-size width="-1" height="20"/>
           </grid>
         </constraints>
       </vspacer>
-      <grid id="31d93" binding="FractalControls" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="31d93" binding="RotationControls" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="4" column="1" row-span="5" col-span="10" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -68,16 +68,18 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="fb951" class="javax.swing.JSlider" binding="trunkSlider">
+          <component id="fb951" class="javax.swing.JSlider" binding="XAxisSlider">
             <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-12040120"/>
               <foreground color="-1"/>
-              <maximum value="500"/>
-              <minimum value="10"/>
-              <value value="500"/>
+              <majorTickSpacing value="45"/>
+              <maximum value="180"/>
+              <minimum value="-180"/>
+              <paintTicks value="true"/>
+              <value value="0"/>
             </properties>
           </component>
           <component id="429e3" class="javax.swing.JLabel">
@@ -87,21 +89,22 @@
             <properties>
               <background color="-12040120"/>
               <foreground color="-1"/>
-              <text value="Initial Length"/>
+              <text value="X-Axis Rotation"/>
             </properties>
           </component>
-          <component id="b8fb1" class="javax.swing.JSlider" binding="numSlider">
+          <component id="b8fb1" class="javax.swing.JSlider" binding="YAxisSlider">
             <constraints>
-              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-12040120"/>
               <foreground color="-1"/>
-              <majorTickSpacing value="1"/>
-              <maximum value="10"/>
+              <majorTickSpacing value="45"/>
+              <maximum value="180"/>
+              <minimum value="-180"/>
               <paintTicks value="true"/>
-              <snapToTicks value="true"/>
-              <value value="1"/>
+              <snapToTicks value="false"/>
+              <value value="0"/>
             </properties>
           </component>
           <component id="a7d72" class="javax.swing.JLabel">
@@ -111,19 +114,19 @@
             <properties>
               <background color="-12040120"/>
               <foreground color="-1"/>
-              <text value="Max Iterations"/>
+              <text value="Y-Axis Rotation"/>
             </properties>
           </component>
           <hspacer id="9d9b6">
             <constraints>
-              <grid row="1" column="0" row-span="2" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+              <grid row="1" column="0" row-span="3" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="20" height="-1"/>
               </grid>
             </constraints>
           </hspacer>
           <hspacer id="74f85">
             <constraints>
-              <grid row="1" column="3" row-span="2" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+              <grid row="1" column="4" row-span="3" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="20" height="-1"/>
               </grid>
             </constraints>
@@ -135,13 +138,38 @@
               </grid>
             </constraints>
           </vspacer>
-          <vspacer id="9b99b">
+          <component id="73f34" class="javax.swing.JSlider" binding="ZAxisSlider">
             <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+              <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="45"/>
+              <maximum value="180"/>
+              <minimum value="-180"/>
+              <paintTicks value="true"/>
+              <snapToTicks value="false"/>
+              <value value="0"/>
+            </properties>
+          </component>
+          <vspacer id="6bf76">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
                 <preferred-size width="-1" height="20"/>
               </grid>
             </constraints>
           </vspacer>
+          <component id="26c5b" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="Z-Axis Rotation"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <component id="a3c4f" class="javax.swing.JLabel">
@@ -150,7 +178,7 @@
         </constraints>
         <properties>
           <foreground color="-1"/>
-          <text value="Fractal Controls"/>
+          <text value="Rotation"/>
         </properties>
       </component>
       <grid id="760d3" binding="PathfinderControls" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -163,34 +191,16 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="1e0f" class="javax.swing.JButton" binding="pausePlayButton" default-binding="true">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-15597681"/>
-              <text value="&gt;&gt;"/>
-            </properties>
-          </component>
-          <component id="ad49f" class="javax.swing.JButton" binding="recursiveModeButton" default-binding="true">
-            <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="7" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-46848"/>
-              <text value="Recrsuive: OFF"/>
-            </properties>
-          </component>
           <vspacer id="c1371">
             <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+              <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
                 <preferred-size width="-1" height="20"/>
               </grid>
             </constraints>
           </vspacer>
           <vspacer id="91fe1">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
                 <preferred-size width="-1" height="20"/>
               </grid>
             </constraints>
@@ -209,12 +219,37 @@
               </grid>
             </constraints>
           </hspacer>
+          <component id="17616" class="javax.swing.JSlider" binding="depthSlider">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="20"/>
+              <maximum value="500"/>
+              <minimum value="-500"/>
+              <paintTicks value="true"/>
+              <snapToTicks value="true"/>
+              <value value="0"/>
+            </properties>
+          </component>
+          <component id="72dc9" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="Slice Depth"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <vspacer id="ec249">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
-            <preferred-size width="-1" height="20"/>
+            <preferred-size width="-1" height="10"/>
           </grid>
         </constraints>
       </vspacer>
@@ -224,33 +259,27 @@
         </constraints>
         <properties>
           <foreground color="-1"/>
-          <text value="Pathfinder Controls"/>
+          <text value="Slice Controls"/>
         </properties>
       </component>
-      <grid id="e62a0" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="e62a0" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="4" column="12" row-span="8" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="32" row-span="8" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-12040120"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="75281" class="javax.swing.JButton" binding="funkyModeButton" default-binding="true">
+          <component id="75281" class="javax.swing.JButton" binding="wireButton">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <background color="-4438273"/>
-              <text value="Funky Mode"/>
+              <background color="-10955458"/>
+              <text value="Wireframe: ON"/>
             </properties>
-          </component>
-          <component id="acbbe" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties/>
           </component>
           <hspacer id="2393d">
             <constraints>
@@ -275,27 +304,291 @@
           </vspacer>
           <vspacer id="508e5">
             <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
                 <preferred-size width="-1" height="20"/>
               </grid>
             </constraints>
           </vspacer>
+          <component id="c9aed" class="javax.swing.JButton" binding="vertButton">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-10955458"/>
+              <text value="Vertices: ON"/>
+            </properties>
+          </component>
+          <component id="c2e20" class="javax.swing.JButton" binding="intersectButton">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="2" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-10955458"/>
+              <text value="Intersections: ON"/>
+            </properties>
+          </component>
         </children>
       </grid>
       <hspacer id="e25db">
         <constraints>
-          <grid row="6" column="11" row-span="1" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+          <grid row="6" column="31" row-span="1" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="20" height="-1"/>
           </grid>
         </constraints>
       </hspacer>
       <component id="710dc" class="javax.swing.JLabel">
         <constraints>
-          <grid row="3" column="12" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="32" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-1"/>
-          <text value="General Controls"/>
+          <text value="Visibility Options"/>
+        </properties>
+      </component>
+      <grid id="9771f" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="11" row-span="5" col-span="10" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12040120"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="271a8" class="javax.swing.JSlider" binding="xMoveSlider">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="100"/>
+              <maximum value="1000"/>
+              <minimum value="0"/>
+              <paintTicks value="true"/>
+              <value value="500"/>
+            </properties>
+          </component>
+          <component id="57b90" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="X-Translate"/>
+            </properties>
+          </component>
+          <component id="bed9a" class="javax.swing.JSlider" binding="yMoveSlider">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="70"/>
+              <maximum value="700"/>
+              <minimum value="0"/>
+              <paintTicks value="true"/>
+              <snapToTicks value="false"/>
+              <value value="350"/>
+            </properties>
+          </component>
+          <component id="80b25" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="Y-Translate"/>
+            </properties>
+          </component>
+          <hspacer id="302b3">
+            <constraints>
+              <grid row="1" column="0" row-span="3" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="20" height="-1"/>
+              </grid>
+            </constraints>
+          </hspacer>
+          <hspacer id="91fcc">
+            <constraints>
+              <grid row="1" column="4" row-span="3" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="20" height="-1"/>
+              </grid>
+            </constraints>
+          </hspacer>
+          <vspacer id="b1a73">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="5ca6" class="javax.swing.JSlider" binding="zMoveSlider">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="40"/>
+              <maximum value="200"/>
+              <minimum value="-200"/>
+              <paintTicks value="true"/>
+              <snapToTicks value="false"/>
+              <value value="0"/>
+            </properties>
+          </component>
+          <vspacer id="b9e63">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="59fe9" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="Z-Translate"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="7810f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="11" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-1"/>
+          <text value="Translation"/>
+        </properties>
+      </component>
+      <grid id="7685a" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="21" row-span="5" col-span="10" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12040120"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="f19e8" class="javax.swing.JSlider" binding="xScaleSlider">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="50"/>
+              <maximum value="500"/>
+              <minimum value="10"/>
+              <paintTicks value="true"/>
+              <value value="100"/>
+            </properties>
+          </component>
+          <component id="11eb5" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="X-Scale"/>
+            </properties>
+          </component>
+          <component id="ba116" class="javax.swing.JSlider" binding="yScaleSlider">
+            <constraints>
+              <grid row="2" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="50"/>
+              <maximum value="500"/>
+              <minimum value="10"/>
+              <paintTicks value="true"/>
+              <snapToTicks value="false"/>
+              <value value="100"/>
+            </properties>
+          </component>
+          <component id="e7b10" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="Y-Scale"/>
+            </properties>
+          </component>
+          <hspacer id="15439">
+            <constraints>
+              <grid row="1" column="0" row-span="3" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="20" height="-1"/>
+              </grid>
+            </constraints>
+          </hspacer>
+          <hspacer id="96fb9">
+            <constraints>
+              <grid row="1" column="4" row-span="3" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="20" height="-1"/>
+              </grid>
+            </constraints>
+          </hspacer>
+          <vspacer id="baa79">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="e5135" class="javax.swing.JSlider" binding="zScaleSlider">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <majorTickSpacing value="50"/>
+              <maximum value="500"/>
+              <minimum value="10"/>
+              <paintTicks value="true"/>
+              <snapToTicks value="false"/>
+              <value value="100"/>
+            </properties>
+          </component>
+          <vspacer id="7ba56">
+            <constraints>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="2" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
+            </constraints>
+          </vspacer>
+          <component id="b28a2" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-12040120"/>
+              <foreground color="-1"/>
+              <text value="Z-Scale"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="943b9" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="21" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-1"/>
+          <text value="Scale"/>
         </properties>
       </component>
     </children>

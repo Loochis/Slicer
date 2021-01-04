@@ -3,10 +3,6 @@ package Graphical;
 import Listeners.MouseListener;
 import Listeners.MouseMoveListener;
 import Listeners.MouseScrollListener;
-import Physics.DrawableSim;
-import Physics.KochCurve;
-import Physics.PathfindingSim;
-import Physics.SierpinskiTriangle;
 import Standard.Main;
 
 import javax.swing.*;
@@ -26,18 +22,27 @@ public class MainFrame extends JFrame {
     private JButton FFFWDButton;
     private JButton FFFFWDButton;
     private JButton FFFFFWDButton;
-    private JButton funkyModeButton;
-    private JSlider trunkSlider;
-    private JSlider numSlider;
-    private JButton pausePlayButton;
-    private JButton recursiveModeButton;
-    private JComboBox comboBox1;
-    private JPanel FractalControls;
+    private JButton wireButton;
+    private JSlider XAxisSlider;
+    private JSlider YAxisSlider;
+    private JPanel RotationControls;
     private JPanel PathfinderControls;
+    private JSlider ZAxisSlider;
+    private JButton vertButton;
+    private JButton intersectButton;
+    private JSlider depthSlider;
+    private JSlider xMoveSlider;
+    private JSlider yMoveSlider;
+    private JSlider zMoveSlider;
+    private JSlider xScaleSlider;
+    private JSlider yScaleSlider;
+    private JSlider zScaleSlider;
     private JButton clearBoardButton;
 
     private DrawablePanel drawablePanel;
 
+    private Color deactivatedCol = new Color(165, 0, 0);
+    private Color activatedCol = new Color(41, 203, 24);
     /**
      * The main window in which all interaction takes place, sets up buttons and main
      */
@@ -54,25 +59,97 @@ public class MainFrame extends JFrame {
 
         // Gives main and drawablePanel reference to each other
         main.setDrawablePanel(drawablePanel);
-
-        // Set up the combobox
-        comboBox1.addItem(new PathfindingSim(100, 70, main));
-        comboBox1.addItem(new KochCurve(main));
-        comboBox1.addItem(new SierpinskiTriangle(main));
+        drawablePanel.setMain(main);
 
         // Adds listeners to the drawable panel
         drawablePanel.addMouseListener(new MouseListener(main));
         drawablePanel.addMouseMotionListener(new MouseMoveListener(main));
         drawablePanel.addMouseWheelListener(new MouseScrollListener(main));
 
+        XAxisSlider.addChangeListener(e -> {
+            main.matrix3.rotation.x = XAxisSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        YAxisSlider.addChangeListener(e -> {
+            main.matrix3.rotation.y = YAxisSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        ZAxisSlider.addChangeListener(e -> {
+            main.matrix3.rotation.z = ZAxisSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        xMoveSlider.addChangeListener(e -> {
+            main.matrix3.translation.x = xMoveSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        yMoveSlider.addChangeListener(e -> {
+            main.matrix3.translation.y = yMoveSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        zMoveSlider.addChangeListener(e -> {
+            main.matrix3.translation.z = zMoveSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        xScaleSlider.addChangeListener(e -> {
+            main.matrix3.scale.x = xScaleSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        yScaleSlider.addChangeListener(e -> {
+            main.matrix3.scale.y = yScaleSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        zScaleSlider.addChangeListener(e -> {
+            main.matrix3.scale.z = zScaleSlider.getValue();
+            main.UpdateMatrix();
+        });
+
+        depthSlider.addChangeListener(e -> main.depth = depthSlider.getValue());
+
         // Sets up all buttons and their actions
         drawablePanel.repaint();
-        funkyModeButton.addActionListener(e -> main.ToggleFunkyMode());
-        trunkSlider.addChangeListener(e -> main.trunk = trunkSlider.getValue());
-        numSlider.addChangeListener(e -> main.maxBranches = numSlider.getValue());
-        pausePlayButton.addActionListener(e -> main.paused = !main.paused);
-        recursiveModeButton.addActionListener(e -> main.recursiveMode = !main.recursiveMode);
-        comboBox1.addActionListener(e -> main.ChangeSim((DrawableSim) comboBox1.getSelectedItem()));
+        wireButton.addActionListener(e -> {
+            if (main.wire) {
+                main.wire = false;
+                wireButton.setBackground(deactivatedCol);
+                wireButton.setText("Wireframe: OFF");
+            } else {
+                main.wire = true;
+                wireButton.setBackground(activatedCol);
+                wireButton.setText("Wireframe: ON");
+            }
+        });
+
+        vertButton.addActionListener(e -> {
+            if (main.verts) {
+                main.verts = false;
+                vertButton.setBackground(deactivatedCol);
+                vertButton.setText("Vertices: OFF");
+            } else {
+                main.verts = true;
+                vertButton.setBackground(activatedCol);
+                vertButton.setText("Vertices: ON");
+            }
+        });
+
+        intersectButton.addActionListener(e -> {
+            if (main.intersections) {
+                main.intersections = false;
+                intersectButton.setBackground(deactivatedCol);
+                intersectButton.setText("Intersections: OFF");
+            } else {
+                main.intersections = true;
+                intersectButton.setBackground(activatedCol);
+                intersectButton.setText("Intersections: ON");
+            }
+        });
     }
 
     // Turns the drawPanel into a DrawablePanel type which contains all the custom behaviours required, gets reference to new DrawablePanel
@@ -136,10 +213,10 @@ public class MainFrame extends JFrame {
         FWDButton.setBackground(new Color(-11918));
         FWDButton.setText(">");
         panel1.add(FWDButton, new com.intellij.uiDesigner.core.GridConstraints(5, 3, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(20, 20), null, 0, false));
-        funkyModeButton = new JButton();
-        funkyModeButton.setBackground(new Color(-4438273));
-        funkyModeButton.setText("Funky Mode");
-        panel1.add(funkyModeButton, new com.intellij.uiDesigner.core.GridConstraints(5, 11, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        wireButton = new JButton();
+        wireButton.setBackground(new Color(-4438273));
+        wireButton.setText("Funky Mode");
+        panel1.add(wireButton, new com.intellij.uiDesigner.core.GridConstraints(5, 11, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clearBoardButton = new JButton();
         clearBoardButton.setBackground(new Color(-4473925));
         clearBoardButton.setText("Clear Board");
